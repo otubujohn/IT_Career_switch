@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f9d949;
+}
+
+.form {
+  width: 80%;
+  border: 1px red solid;
+  height: 700x;
+}
+
+form {
+  margin: auto;
+}
