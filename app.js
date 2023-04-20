@@ -73,15 +73,9 @@ app.get("/register", (req, res) => {
   //res.send(db.records)
 });
 
-app.get(
-  "/success",
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-  }),
-  (req, res) => {
-    res.render("success");
-  }
-);
+app.get("/success", (req, res) => {
+  res.render("success", { user: req.user });
+});
 app.get("/record", (req, res) => {
   res.send(db.records);
 });
@@ -113,9 +107,13 @@ app.post(
   }
 );
 
-app.get("/logout", (req, res) => {
-  req.logout();
-  res.render("login");
+app.get("/logout", (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 });
 
 const PORT = process.env.PORT || 4000;
